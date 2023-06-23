@@ -38,6 +38,11 @@ final class WriteViewController: BaseViewController {
         
         mainView.collectionView.delegate = self
         configureDataSource()
+        mainView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
+        mainView.saveButton.addTarget(self, action: #selector(savebuttonPressed), for: .touchUpInside)
+    }
+    @objc private func savebuttonPressed(sender: UIButton) {
+        
     }
     
 }

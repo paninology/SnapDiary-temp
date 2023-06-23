@@ -82,7 +82,7 @@ final class AddBookViewController: BaseViewController {
             return
         }
        
-        let book = Book(title: titleText, deck: deck, subtitle: subTitleText, notiOption: noti, notiDate: notificationDate)
+        let book = Book(title: titleText, deck: deck, subtitle: subTitleText, notiOption: noti, notiDate: notificationDate, diaries: List())
         repository.addItem(items: book)
         refreshRootViewWillAppear(type: BookListViewController.self)
         navigationController?.popViewController(animated: true)

@@ -30,15 +30,17 @@ final class Book: Object {
     @Persisted var subtitle: String //
     @Persisted var notiOption: NotiOption.RawValue? //
     @Persisted var notiDate: Date//
+    @Persisted var diaries: List<Diary>//
     
     
     
-    convenience init(title: String, deck: Deck, subtitle: String, notiOption: NotiOption?,notiDate: Date ) {
+    convenience init(title: String, deck: Deck, subtitle: String, notiOption: NotiOption?,notiDate: Date, diaries: List<Diary> ) {
         self.init()
         self.title = title
         self.deck = deck
         self.subtitle = subtitle
         self.notiOption = notiOption?.rawValue
         self.notiDate = notiDate
+        self.diaries = diaries
     }
 }

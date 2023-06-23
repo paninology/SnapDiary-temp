@@ -62,6 +62,7 @@
 		8FDBC48B2A208AF100E9B619 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBC48A2A208AF100E9B619 /* CardCollectionViewCell.swift */; };
 		8FDBC48E2A24469000E9B619 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBC48D2A24469000E9B619 /* Constants.swift */; };
 		8FDBC4902A2446E500E9B619 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDBC48F2A2446E500E9B619 /* Colors.swift */; };
+		8FEF9BC42A45680600661CDE /* SingleLineCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEF9BC32A45680600661CDE /* SingleLineCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		8FDBC48A2A208AF100E9B619 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FDBC48D2A24469000E9B619 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8FDBC48F2A2446E500E9B619 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		8FEF9BC32A45680600661CDE /* SingleLineCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 				8FBEDF1D2A3203650030E41C /* ListView.swift */,
 				8F95F7A02A4013970080D42A /* SingleButtonView.swift */,
 				8F95F7B42A43DEBD0080D42A /* CardListCollectionView.swift */,
+				8FEF9BC32A45680600661CDE /* SingleLineCollectionView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				8F95F7AF2A429A300080D42A /* Date+Extension.swift in Sources */,
 				8FDBC4872A2080E400E9B619 /* DeckDetailViewController.swift in Sources */,
 				8F95F7A52A413BE40080D42A /* UIView+Extension.swift in Sources */,
+				8FEF9BC42A45680600661CDE /* SingleLineCollectionView.swift in Sources */,
 				8FDBC45C2A17136C00E9B619 /* Book.swift in Sources */,
 				8F95F7B32A42C8320080D42A /* Diary.swift in Sources */,
 				8FBEDF1A2A31AF740030E41C /* CardListViewController.swift in Sources */,
