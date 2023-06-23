@@ -14,6 +14,8 @@ final class WriteViewController: BaseViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, Card>!
     private var deckCards: [Card]?
     private let book: Book
+    private var date = Date()
+    private var selectedCard: Card?
     
     init(book: Book) {
         self.book = book
@@ -33,16 +35,20 @@ final class WriteViewController: BaseViewController {
     override func configure() {
         super.configure()
         view = mainView
-        mainView.dateLable.text = "date: 11231231231"
-        mainView.questionLable.text = "오늘점심은?"
-        
+        mainView.dateLable.text = "날짜 변경: "
         mainView.collectionView.delegate = self
         configureDataSource()
+        mainView.titleLable.text = date.formatted(date: .abbreviated, time: .omitted)
         mainView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
         mainView.saveButton.addTarget(self, action: #selector(savebuttonPressed), for: .touchUpInside)
+        mainView.datepicker.addTarget(self, action: #selector(datepickerChanged), for: .valueChanged)
+    }
+    @objc private func datepickerChanged(sender: UIDatePicker) {
+        date = sender.date
+        mainView.titleLable.text = date.formatted(date: .abbreviated, time: .omitted)
     }
     @objc private func savebuttonPressed(sender: UIButton) {
-         
+        let diary = Diary(text: mainView.textView.text, card: selectedCard, date: date)
     }
     
 }
@@ -53,10 +59,12 @@ extension WriteViewController {
         <TitleSupplementaryView>(elementKind: "section-header-element-kind") { [weak self]
                    (supplementaryView, string, indexPath) in
             guard let self = self else {return}
+//            supplementaryView.label.text = "\(book.deck?.title)의 카드들"
                }
         let cellRegistration = UICollectionView.CellRegistration<CardCollectionViewCell, Card>.init { [weak self] cell, indexPath, itemIdentifier in
             guard let self = self else {return}
             cell.questionLabel.text = itemIdentifier.question
+            cell.deleteButton.isHidden = true
             
         }
         dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -73,7 +81,8 @@ extension WriteViewController {
 extension WriteViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        selectedCard = deckCards?[indexPath.item]
+        mainView.questionLable.text = selectedCard?.question
         
     }
    
