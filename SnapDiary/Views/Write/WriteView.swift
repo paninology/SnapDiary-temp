@@ -51,6 +51,7 @@ final class WriteView: BaseView {
         titleLable.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(12)
             make.centerX.equalToSuperview()
+            
         }
         dismissButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
@@ -61,7 +62,7 @@ final class WriteView: BaseView {
             make.trailing.equalToSuperview().inset(8)
         }
         dateLable.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).inset(24)
+            make.top.equalTo(titleLable.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(8)
 //            make.trailing.equalTo(datepicker.snp.leading).inset(4)
         }

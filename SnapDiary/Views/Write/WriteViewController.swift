@@ -14,6 +14,7 @@ final class WriteViewController: BaseViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, Card>!
     private var deckCards: [Card]?
     private let book: Book
+    private var date = Date()
     
     init(book: Book) {
         self.book = book
@@ -33,13 +34,18 @@ final class WriteViewController: BaseViewController {
     override func configure() {
         super.configure()
         view = mainView
-        mainView.dateLable.text = "date: 11231231231"
+        mainView.dateLable.text = "날짜 변경: "
         mainView.questionLable.text = "오늘점심은?"
         
         mainView.collectionView.delegate = self
         configureDataSource()
+        mainView.titleLable.text = date.formatted(date: .abbreviated, time: .omitted)
         mainView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
         mainView.saveButton.addTarget(self, action: #selector(savebuttonPressed), for: .touchUpInside)
+        mainView.datepicker.addTarget(self, action: #selector(datepickerChanged), for: .valueChanged)
+    }
+    @objc private func datepickerChanged(sender: UIDatePicker) {
+        date = sender.date
     }
     @objc private func savebuttonPressed(sender: UIButton) {
          
