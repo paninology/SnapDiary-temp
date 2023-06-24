@@ -9,25 +9,33 @@ import UIKit
 //
 final class BookViewController: BaseViewController {
     
-    var dataSource: UICollectionViewDiffableDataSource<Int, String>!
+    var dataSource: UICollectionViewDiffableDataSource<Int, Diary>!
     private let mainView = BookView()
     let testCards = ["오늘 기분은?", "점심은 뭘 먹었나요?", "이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?"]
     let testBack = ["좋아요", "라면", "지금이순간~~~~~~~~~마법처럼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~지금이순간지금이순간"]
+//    private var questions
+    private var diaries: [Diary]
     private let book: Book
     private var nowEditing = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        makeSnapShot(items: testCards, dataSource: dataSource)
-    }
-    
     init(book: Book) {
         self.book = book
+        self.diaries = Array(book.diaries)
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        makeSnapShot(items: diaries, dataSource: dataSource)
+        
     }
     
     override func configure() {
@@ -67,13 +75,14 @@ extension BookViewController {
             guard let self = self else {return}
                }
         
-        let cellRegistration = UICollectionView.CellRegistration<DiaryCollectionViewCell, String>.init { [weak self] cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<DiaryCollectionViewCell, Diary>.init { [weak self] cell, indexPath, itemIdentifier in
             guard let self = self else {return}
             
-            cell.questionLabel.text = itemIdentifier
+            cell.questionLabel.text = itemIdentifier.card?.question
             cell.deleteButton.isHidden = !self.nowEditing
-            cell.dateLabel.text = Date().formatted(date: .abbreviated, time: .omitted)
-            cell.diaryLabel.text = testBack[indexPath.item]
+            cell.dateLabel.text = itemIdentifier.date.formatted(date: .abbreviated, time: .omitted)
+            cell.diaryLabel.text = itemIdentifier.text
+            
         }
 
         dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in

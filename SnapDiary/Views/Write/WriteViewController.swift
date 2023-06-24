@@ -48,7 +48,20 @@ final class WriteViewController: BaseViewController {
         mainView.titleLable.text = date.formatted(date: .abbreviated, time: .omitted)
     }
     @objc private func savebuttonPressed(sender: UIButton) {
+        guard let selectedCard = selectedCard else {
+            showAlertWithCompletion(title: "질문카드를 선택해주세요", message: "", hasCancelButton: false, completion: nil)
+            return
+        }
+        guard let text = mainView.textView.text,
+              text.trimmingCharacters(in: .whitespaces) != ""  else {
+            showAlertWithCompletion(title: "일기 내용을 입력해주세요", message: "", hasCancelButton: false, completion: nil)
+            return
+        }
         let diary = Diary(text: mainView.textView.text, card: selectedCard, date: date)
+        repository.addItem(items: diary)
+        repository.appendDiaryToBook(diary: diary, book: book)
+        refreshRootViewWillAppear(rootVC: BookViewController.self)
+        dismiss(animated: true)
     }
     
 }

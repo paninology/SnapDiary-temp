@@ -83,6 +83,15 @@ final class RealmRepository: RealmRepositoryType {
             print(error)
         }
     }
+    func appendDiaryToBook(diary: Diary, book: Book) {
+        do {
+            try localRealm.write {
+                book.diaries.append(diary)
+            }
+        } catch let error {
+            print(error)
+        }
+    }
     
     func modifyItem(completion: (_ realm: Realm)-> Void) {
         do {

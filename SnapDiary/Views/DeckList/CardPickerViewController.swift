@@ -71,7 +71,7 @@ final class CardPickerViewContoller: BaseViewController {
     @objc private func addButtonClicked() {
       
         repository.appendCardToDeck(cards: selectedCards, deck: deck)
-        refreshRootViewWillAppear(type: DeckDetailViewController.self)
+        refreshRootViewWillAppear(rootVC: DeckDetailViewController.self)
         dismiss(animated: true)
     }
     @objc private func cellButtonPressed(sender: UIButton) {

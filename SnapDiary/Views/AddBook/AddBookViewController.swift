@@ -84,7 +84,7 @@ final class AddBookViewController: BaseViewController {
        
         let book = Book(title: titleText, deck: deck, subtitle: subTitleText, notiOption: noti, notiDate: notificationDate, diaries: List())
         repository.addItem(items: book)
-        refreshRootViewWillAppear(type: BookListViewController.self)
+        refreshRootViewWillAppear(rootVC: BookListViewController.self)
         navigationController?.popViewController(animated: true)
     }
     @objc private func selectSwitchChanged(sender: UISwitch) {
