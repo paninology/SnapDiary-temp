@@ -60,7 +60,7 @@ final class WriteViewController: BaseViewController {
         let diary = Diary(text: mainView.textView.text, card: selectedCard, date: date)
         repository.addItem(items: diary)
         repository.appendDiaryToBook(diary: diary, book: book)
-        refreshRootViewWillAppear(rootVC: BookViewController.self)
+        refreshRootViewWillAppear(type: BookViewController.self)
         dismiss(animated: true)
     }
     

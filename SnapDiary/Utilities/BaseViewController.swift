@@ -38,7 +38,7 @@ class BaseViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func refreshRootViewWillAppear<T: UIViewController>(rootVC: T.Type) {
+    func refreshRootViewWillAppear<T: UIViewController>(type: T.Type) {
         if let vc = presentingViewController as? T {
             vc.viewWillAppear(true)
         }

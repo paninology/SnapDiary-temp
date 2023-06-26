@@ -39,7 +39,7 @@ final class DeckTitleViewContoller: BaseViewController, UITextFieldDelegate {
         repository.modifyItem {_ in 
             deck.title = text
         }
-        refreshRootViewWillAppear(rootVC: DeckDetailViewController.self)
+        refreshRootViewWillAppear(type: DeckDetailViewController.self)
         dismiss(animated: true)
     }
     private func saveButtonSet() {
