@@ -11,9 +11,6 @@ final class BookViewController: BaseViewController {
     
     var dataSource: UICollectionViewDiffableDataSource<Int, Diary>!
     private let mainView = BookView()
-    let testCards = ["오늘 기분은?", "점심은 뭘 먹었나요?", "이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?이번주에 남편이 가장 열받게 했을때는 언제인가요?"]
-    let testBack = ["좋아요", "라면", "지금이순간~~~~~~~~~마법처럼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~지금이순간지금이순간"]
-//    private var questions
     private var diaries: [Diary]
     private var book: Book
     private var nowEditing = false
@@ -37,21 +34,24 @@ final class BookViewController: BaseViewController {
         book = refreshBookFromRealm(book: book) ?? book
         diaries = Array(book.diaries)
         makeSnapShot(items: diaries, dataSource: dataSource)
+        setUI()
         print(diaries, book)
     }
     
     override func configure() {
         super.configure()
         view = mainView
+        configureDataSource()
+        mainView.collectionView.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(settingButtonPressed))
+        mainView.writeButton.addTarget(self, action: #selector(newDiaryButtonPressed), for: .touchUpInside)
+    }
+    override func setUI() {
+        super.setUI()
         mainView.bookDetailView.title.text = book.title
         mainView.bookDetailView.subtitle.text = book.subtitle
         mainView.bookDetailView.deckInfo.text = "사용중인 덱:  " + (book.deck?.title ?? "없음")
         mainView.bookDetailView.notiOption.text = "알림:  " + (book.notiOption ?? "미설정") + book.notiDate.formatted(date: .omitted, time: .shortened)
-        configureDataSource()
-        mainView.collectionView.delegate = self
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(newDiaryButtonPressed))
-
-        mainView.writeButton.addTarget(self, action: #selector(newDiaryButtonPressed), for: .touchUpInside)
     }
     private func cellTapped(cell: DiaryCollectionViewCell) {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
@@ -67,7 +67,7 @@ final class BookViewController: BaseViewController {
         transition(WriteViewController(book: book), transitionStyle: .presentOverFull)
     }
     @objc private func settingButtonPressed(sender: UIButton) {
-        
+        transition(SetiingBookViewController(book: book), transitionStyle: .presentNavigation)
     }
     private func refreshBookFromRealm(book: Book) -> Book? {
         guard let realm = book.realm else {
@@ -76,6 +76,7 @@ final class BookViewController: BaseViewController {
         let refreshedBook = realm.object(ofType: Book.self, forPrimaryKey: book.objectId)
         return refreshedBook
     }
+   
     
 }
 //MARK: CollectionView datasource

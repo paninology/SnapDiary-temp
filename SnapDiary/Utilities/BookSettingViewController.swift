@@ -11,10 +11,10 @@ import RealmSwift
 //mvvm + rx으로 변경??
  class BookSettingViewController: BaseViewController {
     
-    private let mainView = AddBookView()
+    let mainView = AddBookView()
     private let inputFields = ["제목", "설명", "알림옵션", "질문카드 고르기"]
     private let dateOptions = NotiOption.allCases
-    private var decks: [Deck] = []
+    var decks: [Deck] = []
     private var fetchedDecks: Results<Deck>? {
         didSet {
             if let result = fetchedDecks {
