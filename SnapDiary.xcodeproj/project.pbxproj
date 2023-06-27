@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F4E97132A4A795B00BEEBC0 /* BookSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E97122A4A795B00BEEBC0 /* BookSettingViewController.swift */; };
+		8F4E97152A4A811F00BEEBC0 /* SettingBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E97142A4A811F00BEEBC0 /* SettingBookViewController.swift */; };
 		8F77D86F2A26E8B900BC0054 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77D86E2A26E8B900BC0054 /* CardView.swift */; };
 		8F77D8712A26E8C100BC0054 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77D8702A26E8C100BC0054 /* CardViewController.swift */; };
 		8F95F7A12A4013970080D42A /* SingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F95F7A02A4013970080D42A /* SingleButtonView.swift */; };
@@ -83,6 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F4E97122A4A795B00BEEBC0 /* BookSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSettingViewController.swift; sourceTree = "<group>"; };
+		8F4E97142A4A811F00BEEBC0 /* SettingBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingBookViewController.swift; sourceTree = "<group>"; };
 		8F77D86E2A26E8B900BC0054 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8F77D8702A26E8C100BC0054 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		8F95F7A02A4013970080D42A /* SingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleButtonView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				8F95F7AB2A4280090080D42A /* DetailViews */,
 				8F95F7AC2A4280680080D42A /* BookView.swift */,
 				8F95F7A72A4279780080D42A /* BookViewController.swift */,
+				8F4E97142A4A811F00BEEBC0 /* SettingBookViewController.swift */,
 				8F95F7B02A42B9740080D42A /* DiaryCollectionViewCell.swift */,
 			);
 			path = BookDetail;
@@ -302,6 +307,7 @@
 				8F95F7A02A4013970080D42A /* SingleButtonView.swift */,
 				8F95F7B42A43DEBD0080D42A /* CardListCollectionView.swift */,
 				8FEF9BC32A45680600661CDE /* SingleLineCollectionView.swift */,
+				8F4E97122A4A795B00BEEBC0 /* BookSettingViewController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -568,7 +574,9 @@
 				8F95F7A52A413BE40080D42A /* UIView+Extension.swift in Sources */,
 				8FEF9BC42A45680600661CDE /* SingleLineCollectionView.swift in Sources */,
 				8FDBC45C2A17136C00E9B619 /* Book.swift in Sources */,
+				8F4E97132A4A795B00BEEBC0 /* BookSettingViewController.swift in Sources */,
 				8F95F7B32A42C8320080D42A /* Diary.swift in Sources */,
+				8F4E97152A4A811F00BEEBC0 /* SettingBookViewController.swift in Sources */,
 				8FBEDF1A2A31AF740030E41C /* CardListViewController.swift in Sources */,
 				8FDBC4802A1F2D7500E9B619 /* SwitchTableViewCell.swift in Sources */,
 				8F95F7B12A42B9740080D42A /* DiaryCollectionViewCell.swift in Sources */,
