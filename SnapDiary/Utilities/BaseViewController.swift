@@ -43,6 +43,15 @@ class BaseViewController: UIViewController {
             vc.viewWillAppear(true)
         }
     }
+    func refreshRootViewWithNavi<T: UIViewController>(vc: T.Type) {
+        if let navigationController = presentingViewController as? UINavigationController,
+           let addVC = navigationController.topViewController as? T {
+            dismiss(animated: true) {
+                addVC.viewWillAppear(true)
+            }
+        }
+        
+    }
      func makeSnapShot<T: Hashable>(items: [T], dataSource: UICollectionViewDiffableDataSource<Int, T>) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, T>()
         snapshot.appendSections([0])

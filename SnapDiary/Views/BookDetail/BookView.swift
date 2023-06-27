@@ -20,10 +20,35 @@ final class BookView: BaseView {
  
     let collectionView = CardListCollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
+    let writeButton: UIButton = {
+        let view = UIButton()
+        view.layer.cornerRadius = 28
+        view.clipsToBounds = true
+//        view.layer.shadowColor = UIColor.black.cgColor
+//        view.layer.shadowOpacity = 0.5
+//        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        view.layer.shadowRadius = 4
+//        view.layer.borderWidth = 0.2
+//        view.layer.borderColor = UIColor.label.cgColor
+        view.backgroundColor = .systemGray6
+        view.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+//        view.setTitle("일기쓰기", for: .normal)
+        view.tintColor = .label
+        view.setTitleColor(.label, for: .normal)
+        let pointSize: CGFloat = 20
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: pointSize)
+        var config = UIButton.Configuration.plain()
+        config.preferredSymbolConfigurationForImage = imageConfig
+        view.configuration = config
+        
+
+        return view
+    }()
+ 
     override func configure() {
         super.configure()
         
-        [collectionView, bookDetailView ].forEach {addSubview($0)}
+        [ collectionView, bookDetailView, writeButton ].forEach {addSubview($0)}
     }
     
     override func setConstraints() {
@@ -37,6 +62,12 @@ final class BookView: BaseView {
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(bookDetailView.snp.bottom).offset(8)
             make.bottom.equalToSuperview()
+        }
+        writeButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(24)
+            make.width.equalTo(56)
+            make.height.equalTo(56)
         }
     }
 }

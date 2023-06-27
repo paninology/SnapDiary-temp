@@ -43,6 +43,7 @@ final class WriteViewController: BaseViewController {
         mainView.saveButton.addTarget(self, action: #selector(savebuttonPressed), for: .touchUpInside)
         mainView.datepicker.addTarget(self, action: #selector(datepickerChanged), for: .valueChanged)
     }
+    
     @objc private func datepickerChanged(sender: UIDatePicker) {
         date = sender.date
         mainView.titleLable.text = date.formatted(date: .abbreviated, time: .omitted)
@@ -60,7 +61,7 @@ final class WriteViewController: BaseViewController {
         let diary = Diary(text: mainView.textView.text, card: selectedCard, date: date)
         repository.addItem(items: diary)
         repository.appendDiaryToBook(diary: diary, book: book)
-        refreshRootViewWillAppear(type: BookViewController.self)
+        refreshRootViewWithNavi(vc: BookViewController.self)
         dismiss(animated: true)
     }
     

@@ -15,7 +15,7 @@ final class BookViewController: BaseViewController {
     let testBack = ["좋아요", "라면", "지금이순간~~~~~~~~~마법처럼~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~지금이순간지금이순간"]
 //    private var questions
     private var diaries: [Diary]
-    private let book: Book
+    private var book: Book
     private var nowEditing = false
     
     init(book: Book) {
@@ -33,9 +33,11 @@ final class BookViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("bookviewc will")
+        book = refreshBookFromRealm(book: book) ?? book
+        diaries = Array(book.diaries)
         makeSnapShot(items: diaries, dataSource: dataSource)
-        
+        print(diaries, book)
     }
     
     override func configure() {
@@ -47,8 +49,9 @@ final class BookViewController: BaseViewController {
         mainView.bookDetailView.notiOption.text = "알림:  " + (book.notiOption ?? "미설정") + book.notiDate.formatted(date: .omitted, time: .shortened)
         configureDataSource()
         mainView.collectionView.delegate = self
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "새일기", style: .plain, target: self, action: #selector(newDiaryButtonPressed))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(newDiaryButtonPressed))
+
+        mainView.writeButton.addTarget(self, action: #selector(newDiaryButtonPressed), for: .touchUpInside)
     }
     private func cellTapped(cell: DiaryCollectionViewCell) {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
@@ -63,7 +66,16 @@ final class BookViewController: BaseViewController {
     @objc private func newDiaryButtonPressed(sender: UIButton) {
         transition(WriteViewController(book: book), transitionStyle: .presentOverFull)
     }
-    
+    @objc private func settingButtonPressed(sender: UIButton) {
+        
+    }
+    private func refreshBookFromRealm(book: Book) -> Book? {
+        guard let realm = book.realm else {
+            return nil // Realm 인스턴스를 가져올 수 없는 경우 nil 반환
+        }
+        let refreshedBook = realm.object(ofType: Book.self, forPrimaryKey: book.objectId)
+        return refreshedBook
+    }
     
 }
 //MARK: CollectionView datasource
