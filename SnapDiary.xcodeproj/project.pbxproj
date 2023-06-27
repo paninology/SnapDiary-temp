@@ -174,6 +174,8 @@
 		8F4E970F2A4A77A000BEEBC0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				8FDBC4612A1B3F8900E9B619 /* BaseView.swift */,
+				8FDBC44F2A16FDC200E9B619 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -296,8 +298,6 @@
 				8F4E970F2A4A77A000BEEBC0 /* Base */,
 				8FBEDF162A305AD90030E41C /* CustomButtons */,
 				8FDBC4762A1DCE3A00E9B619 /* CustomCells */,
-				8FDBC44F2A16FDC200E9B619 /* BaseViewController.swift */,
-				8FDBC4612A1B3F8900E9B619 /* BaseView.swift */,
 				8FBEDF1D2A3203650030E41C /* ListView.swift */,
 				8F95F7A02A4013970080D42A /* SingleButtonView.swift */,
 				8F95F7B42A43DEBD0080D42A /* CardListCollectionView.swift */,
